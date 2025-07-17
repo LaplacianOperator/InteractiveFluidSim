@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <omp.h>
 
+
 struct Particle {
 
 	glm::vec3 position;

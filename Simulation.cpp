@@ -295,7 +295,6 @@ std::vector<int> Simulation::NeighborSearch(int index)
 }
 
 
-
 void Simulation::CalculateDensity()
 {
 	
@@ -521,6 +520,7 @@ void Simulation::ComputeAcceleration()
 		glm::vec3 vf = m_Particles[i].ViscousForce;
 		glm::vec3 ef = m_Particles[i].ExternalForce;
 		glm::vec3 bf = m_Particles[i].BouyantForce;
+		
 
 		m_Particles[i].Acceleration = (pf + vf + ef + bf) / m_Particles[i].mass;
 
@@ -607,7 +607,7 @@ void Simulation::step()
 		CalculateTemperature();
 		CalculatePressureForce();
 		CalculateViscousForce();
-		CalculateSurfaceForce();
+		//CalculateSurfaceForce();
 		CalculateExternalForce();
 		CalculateBouyantForce();
 		ComputeAcceleration();
@@ -649,6 +649,12 @@ void Simulation::EnableBottomHeat()
 		}
 
 
+		if (m_Particles[i].position.x < -m_parameters.width * 0.98 || m_Particles[i].position.x > m_parameters.width * 0.98) {
+
+
+			m_Particles[i].temperature = m_properties.tempi;
+
+		}
 		
 
 	}
